@@ -3,7 +3,7 @@
 A simple Flask web app to manage student results. Built with Python and Bootstrap.
 
 ## Features
-- **Create**: Add new student with name, score, grade and class and id
+- **Create**: Add new student with name, score, grade, class and id
 - **Read**: View all students in a table
 - **Update**: Edit student details with pre-filled form
 - **Delete**: Delete student with confirmation
