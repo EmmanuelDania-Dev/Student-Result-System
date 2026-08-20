@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 
 app = Flask(__name__)
-app.secret_key = "EmmyDev"
+app.secret_key = "46-$)29!$!$fhsldbf463"
 
 students = []
 
