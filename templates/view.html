@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Records</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+
+        body{
+            background:#f4f6f9;
+        }
+
+        .card{
+            border:none;
+            border-radius:15px;
+            box-shadow:0px 10px 25px rgba(0,0,0,.15);
+        }
+
+        .card-header{
+            background:#0d6efd;
+            color:white;
+            text-align:center;
+            font-size:28px;
+            font-weight:bold;
+            padding:20px;
+        }
+
+        table{
+            margin-top:20px;
+        }
+
+        th{
+            text-align:center;
+        }
+
+        td{
+            text-align:center;
+            vertical-align:middle;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-10">
+
+            <div class="card">
+
+                <div class="card-header">
+                    Student Information
+                </div>
+
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <div class="d-grid gap-2">
+
+                            <a href="/" class="btn btn-success">
+                                Add new Student
+                            </a>
+                        </div>
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+                        <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+
+                        <table class="table table-bordered table-hover table-striped">
+
+                            <thead class="table-dark">
+
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Class</th>
+                                    <th>Score</th>
+                                    <th>Grade</th>
+                                    <th>Actions</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                {% for student in students %}
+
+                                <tr>
+
+                                    <!-- Automatically counts the rows -->
+                                    <td>{{ student["id"] }}</td>
+
+                                    <td>{{ student["name"] }}</td>
+
+                                    <td>{{ student["class"] }}</td>
+
+                                    <td>{{ student["score"] }}</td>
+
+                                    <td>{{student["grade"]}}</td>
+
+                                    <td>
+
+    <!-- Edit Button -->
+    <a href="{{ url_for('edit', student_id=student['id']) }}"
+       class="btn btn-warning btn-sm">
+        Edit
+    </a>
+
+    <!-- Delete Button -->
+    <form action="{{ url_for('delete_student', student_id=student['id']) }}"
+          method="POST"
+          style="display: inline;">
+
+        <button type="submit" class="btn btn-danger btn-sm">
+            Delete
+        </button>
+
+    </form>
+
+</td>
+
+
+                                </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
